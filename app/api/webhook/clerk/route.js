@@ -1,6 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import { createUser } from '@/database/actions/user.actions'
+import { createUser, deleteUser } from '@/database/actions/user.actions'
 import { NextResponse } from 'next/server'
  
 export async function POST(req) {
@@ -68,5 +68,15 @@ export async function POST(req) {
 
     return NextResponse.json({ message: 'OK', user: newUser })
   }
+
+  if (eventType === 'user.deleted') {
+    const { id } = evt.data
+
+    const deletedUser = await deleteUser(id)
+
+    return NextResponse.json({ message: 'OK', user: deletedUser })
+  }
+ 
+  return new Response('', { status: 200 })
 }
  

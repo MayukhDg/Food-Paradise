@@ -13,3 +13,24 @@ export async function createUser(user) {
       handleError(error)
     }
   }
+
+
+  export async function deleteUser(clerkId) {
+    try {
+      await connectToDatabase()
+      const deletedUser = await User.findByIdAndDelete(userToDelete._id)
+      return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null
+    } catch (error) {
+      handleError(error)
+    }
+  }
+
+export async function fetchUser(userId) {
+  try {
+    await connectToDatabase();
+    const user = await User.find({clerkId:userId})
+    return JSON.parse(JSON.stringify(user))
+  } catch (error) {
+    
+  }
+}
