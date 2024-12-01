@@ -1,11 +1,26 @@
 import mongoose from "mongoose";
 
 
-const orderSchema = new mongoose.Schema({
-
-})
-
-
-const Order =  mongoose.models.Order || mongoose.model("Order", orderSchema)
-
-export default Order
+const OrderSchema = new mongoose.Schema({
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    stripeId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    totalAmount: {
+      type: String,
+    },
+    
+    buyer: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  })
+  
+  const Order = mongoose.models.Order || model('Order', OrderSchema)
+  
+  export default Order

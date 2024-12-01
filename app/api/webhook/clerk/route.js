@@ -2,7 +2,9 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { createUser, deleteUser } from '@/database/actions/user.actions'
 import { NextResponse } from 'next/server'
- 
+import { clerkClient } from '@clerk/nextjs/server'
+
+
 export async function POST(req) {
  
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -66,6 +68,15 @@ export async function POST(req) {
 
     const newUser = await createUser(user);
 
+    if(newUser) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          userId: newUser._id
+        }
+      })
+    }
+
+    
     return NextResponse.json({ message: 'OK', user: newUser })
   }
 
