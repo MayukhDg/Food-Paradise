@@ -1,7 +1,6 @@
 import stripe from 'stripe'
 import { NextResponse } from 'next/server'
-import { createOrder } from '@/lib/actions/order.actions'
-
+import { createOrder } from '@/database/actions/order.action'
 //Indian test card: 4000 0035 6000 0008
 
 export async function POST(request) {
