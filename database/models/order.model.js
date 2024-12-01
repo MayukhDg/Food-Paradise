@@ -16,11 +16,11 @@ const OrderSchema = new mongoose.Schema({
     },
     
     buyer: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+      type: mongoose.Schema.Types.ObjectId,
+      required:true,
     },
   })
   
-  const Order = mongoose.models.Order || model('Order', OrderSchema)
+  const Order = mongoose.models.Order || mongoose.model('Order', OrderSchema)
   
   export default Order

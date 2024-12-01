@@ -23,19 +23,18 @@ const Checkout = ({ cartValue, userId }) => {
   const onCheckout = async () => {
     const order = {
       price:cartValue,
-      buyerId: userId
+      buyerId: userId.toString(),
     }
 
     await checkoutOrder(order);
   }
 
   return (
-    <form action={onCheckout} method="post">
-      <Button type="submit" role="link" size="lg" className="button sm:w-fit">
+    
+      <Button onClick={onCheckout} size="lg" className="button sm:w-fit">
         Complete Order
       </Button>
-    </form>
-  )
+      )
 }
 
 export default Checkout
