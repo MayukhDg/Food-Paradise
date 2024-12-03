@@ -8,6 +8,7 @@ export async function createUser(user) {
       await connectToDatabase()
   
       const newUser = await User.create(user)
+      await newUser.save()
       return JSON.parse(JSON.stringify(newUser))
     } catch (error) {
       handleError(error)
@@ -31,6 +32,6 @@ export async function fetchUser(userId) {
     const user = await User.find({clerkId:userId})
     return JSON.parse(JSON.stringify(user))
   } catch (error) {
-    
+    console.log(error)
   }
 }

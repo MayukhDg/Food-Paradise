@@ -18,6 +18,7 @@ const OrderSchema = new mongoose.Schema({
     buyer: {
       type: mongoose.Schema.Types.ObjectId,
       required:true,
+      ref:"User"
     },
   })
   

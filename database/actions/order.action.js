@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { connectToDatabase } from '../connection';
 import Order from '../models/order.model';
 import { fetchUser } from './user.actions';
+import User from '../models/user.model';
 
 export const checkoutOrder = async (order) => {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -48,9 +49,24 @@ export const checkoutOrder = async (order) => {
         ...order,
         buyer: user[0]._id,
       });
+
+      await User.findByIdAndUpdate(user[0]._id, {
+        $push:{ orders: newOrder._id}
+      })
   
       return JSON.parse(JSON.stringify(newOrder));
     } catch (error) {
       handleError(error);
     }
+  }
+
+
+   export async function getOrdersByUser(userId) {
+       try {
+        await connectToDatabase();
+        const userOrders = await Order.find({buyer:userId})
+        return JSON.parse(JSON.stringify(userOrders))
+       } catch (error) {
+        console.log(error);
+       }  
   }

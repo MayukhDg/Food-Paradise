@@ -5,6 +5,11 @@ export const navLinks = [
 
   }, 
 
+  {
+   label: "Order Now",
+   href:"/products"
+  },
+
 {
   label:"Cart",
     href:"/cart"

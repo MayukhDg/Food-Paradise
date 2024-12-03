@@ -9,16 +9,20 @@ import Checkout from '@/components/Checkout'
 
 const Cart = () => {
   
-  const { cartValue, cartItems  } = useContext(GlobalContext)
+  const { cartItems, setCartitems, cartValue, setCartValue  } = useContext(GlobalContext)
   
   const { user } = useUser()
   
   return (
-    <div>
+    <div className='min-h-screen bg-slate-950 p-10' >
       { cartItems.map((item)=>(
-        <CartCard key={item.id} name={item.name} quantity={item.quantity} price={item.price}  />
+        <CartCard cartItems ={cartItems} setCartitems={setCartitems}  cartValue={cartValue} setCartValue={setCartValue} key={item.id} name={item.name} quantity={item.quantity} price={item.price}  />
       )) }
+      <div className='flex flex-col gap-3 mt-5' >
+      <p  className='text-white font-semibold' >Total: ₹{cartValue}</p>
       <Checkout cartValue={cartValue}  userId={user?.id.toString()} />
+      </div>
+      
     </div>
   )
 }
