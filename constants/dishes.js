@@ -3,7 +3,7 @@ export const dishes = [
       id:1,
       name: "Paneer Butter Masala",
       price: 250,
-      description: "A rich and creamy curry made with paneer cubes and buttery tomato gravy."
+      description: "A rich and creamy curry made \n with  paneer cubes and buttery tomato gravy."
     },
     {
       id:2,
@@ -27,7 +27,7 @@ export const dishes = [
       id:5,
       name: "Vegetable Manchurian",
       price: 180,
-      description: "Crispy fried vegetable balls tossed in a tangy Indo-Chinese sauce."
+      description: "Crispy fried vegetable balls tossed in a \n tangy Indo-Chinese sauce."
     }
   ];
   

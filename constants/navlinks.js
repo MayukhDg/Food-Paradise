@@ -1,9 +1,9 @@
 export const navLinks = [
-  {
+  /*{
     label:"Past Orders",
     href:"/past-orders",
 
-  }, 
+  }*/, 
 
   {
    label: "Order Now",

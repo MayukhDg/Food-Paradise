@@ -12,14 +12,18 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { GlobalContext } from '@/Context/GlobalContext'
+import toast from 'react-hot-toast';
 
 const DishCard = ({id, description, price, name}) => {
   
- const {  setCartitems, cartItems, cartValue, setCartValue } = useContext(GlobalContext)
+const {  setCartitems, cartItems, cartValue, setCartValue } = useContext(GlobalContext)
  
- console.log(cartValue) 
- 
+
  const addtoCart = (id, name, description, price) => {
+  
+  toast.success("Item added to cart", {
+    position:"bottom-center"
+  }) 
   setCartitems((prevCartItems) => {
     // Check if the item already exists in the cart
     const isItemInCart = prevCartItems.some((item) => item.id === id);
@@ -43,7 +47,8 @@ const DishCard = ({id, description, price, name}) => {
           ? { ...item, quantity: item.quantity + 1 }
           : item
       ); 
-    } 
+    }
+    
   });
    
   setCartValue((prev)=>{
@@ -57,7 +62,14 @@ return (
     <Card className="w-[350px]">
     <CardHeader>
       <CardTitle>{name}</CardTitle>
-      <CardDescription>{description}</CardDescription>
+      <CardDescription>
+      {description.split("\n").map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
+      </CardDescription>
     </CardHeader>
     <CardContent>₹{price}</CardContent>
     <CardFooter className="flex justify-between">
