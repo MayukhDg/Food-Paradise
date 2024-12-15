@@ -16,7 +16,7 @@ const page = () => {
       <h1 className='text-4xl tracking-[1px] font-bold'>Welcome to 
         <span className='font-semibold text-transparent bg-clip-text bg-gradient-to-br from-slate-800 to-slate-200'> Food Paradise</span>
         </h1>
-         <Button className="max-w-[100px]" variant="outline" onClick={()=>router.push("/products")}>
+         <Button className="max-w-[100px]"  onClick={()=>router.push("/products")}>
           Order Now
          </Button>
         </div> 
