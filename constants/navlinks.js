@@ -1,4 +1,10 @@
 export const navLinks = [
+  
+  {
+    label:"Home",
+    href:"/"
+  }
+  
   /*{
     label:"Past Orders",
     href:"/past-orders",
@@ -15,8 +21,5 @@ export const navLinks = [
     href:"/cart"
   },
   
-  {
-    label:"Home",
-    href:"/"
-  }
+  
 ] 
