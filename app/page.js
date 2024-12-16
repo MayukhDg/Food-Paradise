@@ -30,6 +30,17 @@ const page = () => {
      />
      </div>
      <div className='flex bg-white w-full md:w-1/2 justify-center md:justify-end items-center'>
+     <div className=' items-center flex flex-col md:gap-8 gap-4' >
+     <motion.h2
+     className=' md:mt-0 mt-4 mr-8 text-3xl font-extrabold text-gray-900 dark:text-gray-200 tracking-tight leading-tight sm:text-4xl sm:leading-tight'
+       initial={{x:400}}
+       animate={{x:0}}
+       transition={{ duration: 0.3, delay: 1, ease: "easeIn" }}
+       
+
+     >
+      The best in town
+     </motion.h2>
      <motion.img
                 src='/pizza.png'
                 style={{
@@ -46,6 +57,7 @@ const page = () => {
                     repeatType: "reverse"
                 }}
             />
+     </div>
      </div>
     </section>
   )
