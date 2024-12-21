@@ -26,7 +26,7 @@ const MobileMenu = () => {
         className=''
        /> 
      </SheetTrigger>
-     <SheetContent className="w-[300px]" > 
+     <SheetContent side="right" className="w-[300px]" > 
      <SheetTitle>Menu</SheetTitle> 
       <SheetClose/> 
       <ul className='flex flex-col gap-4 items-center' >
