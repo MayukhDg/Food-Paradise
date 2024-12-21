@@ -11,6 +11,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from './ui/button'
+import { navLinks } from '@/constants/navlinks'
+import Link from 'next/link'
 
 const MobileMenu = () => {
   return (
@@ -26,14 +28,18 @@ const MobileMenu = () => {
      </SheetTrigger>
      <SheetContent className="w-[300px]" > 
      <SheetTitle>Menu</SheetTitle> 
-       <SheetClose>
-       <Image
-         src="/minus.svg"
-         height={40}
-         width={40}
-         alt='menu close'
-       />
-        </SheetClose> 
+      <SheetClose/> 
+      <ul className='flex flex-col gap-4 items-center' >
+        {   navLinks.map((link, idx)=>(
+          
+          <li className='font-light text-lg'  key={idx}>
+            <Link href={link.href} >
+            { link.label }
+            </Link>       
+            </li> 
+           
+        ))}
+        </ul> 
      </SheetContent>
     </Sheet>
   )
