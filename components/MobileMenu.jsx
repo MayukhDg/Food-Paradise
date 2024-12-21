@@ -32,7 +32,7 @@ const MobileMenu = () => {
       <ul className='flex flex-col gap-4 items-center' >
         {   navLinks.map((link, idx)=>(
           
-          <li className='font-light text-lg'  key={idx}>
+          <li className='font-light text-lg hover:font-bold'  key={idx}>
             <Link href={link.href} >
            <SheetClose>
            { link.label }

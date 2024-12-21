@@ -12,7 +12,7 @@ const page = () => {
   
   return (
     <section className='flex min-h-screen md:flex-row flex-col overflow-hidden'>
-     <div className=' flex-1 py-4 md:py-8 w-full flex bg-cyan-950 md:w-1/2 relative flex-col justify-center pl-6'>
+     <div className=' py-4 md:py-8 w-full flex bg-cyan-950 md:w-1/2 relative flex-col justify-center pl-6'>
       <div className='flex-col gap-5 flex' >
       <h1 className='text-4xl font-extrabold text-gray-900 dark:text-gray-200 tracking-tight leading-tight sm:text-5xl sm:leading-tight'>Welcome to 
         <span className='font-semibold text-transparent bg-clip-text bg-gradient-to-br from-slate-800 to-slate-200'> Food Paradise</span>
@@ -20,7 +20,19 @@ const page = () => {
          <Button className="max-w-[100px]"  onClick={()=>router.push("/products")}>
           Order Now
          </Button>
-        </div> 
+         </div>
+         <motion.img
+         initial={{opacity:0}}
+         animate={{
+          opacity:1,
+        }}
+        transition={{ease:"easeIn", delay:0.1, duration:0.5}}
+       src="/large-burger.png"
+       className='block md:hidden'
+       height={200}
+       width={200}
+       alt='large burger'
+     /> 
       <Image
        src="/large-burger.png"
        className='absolute right-[-220px] hidden md:block'
@@ -35,7 +47,7 @@ const page = () => {
      className=' md:mt-0 mt-4 mr-8 text-3xl font-extrabold text-gray-900 dark:text-gray-200 tracking-tight leading-tight sm:text-4xl sm:leading-tight'
        initial={{x:400}}
        animate={{x:0}}
-       transition={{ duration: 0.3, delay: 1, ease: "easeIn" }}
+       transition={{ duration: 0.3, delay: 0.6, ease: "easeIn" }}
        
 
      >
