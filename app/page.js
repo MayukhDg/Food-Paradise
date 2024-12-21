@@ -12,7 +12,7 @@ const page = () => {
   
   return (
     <section className='flex min-h-screen md:flex-row flex-col overflow-hidden'>
-     <div className='  py-8 w-full flex bg-cyan-950 md:w-1/2 relative flex-col justify-center pl-6'>
+     <div className=' flex-1 py-4 md:py-8 w-full flex bg-cyan-950 md:w-1/2 relative flex-col justify-center pl-6'>
       <div className='flex-col gap-5 flex' >
       <h1 className='text-4xl font-extrabold text-gray-900 dark:text-gray-200 tracking-tight leading-tight sm:text-5xl sm:leading-tight'>Welcome to 
         <span className='font-semibold text-transparent bg-clip-text bg-gradient-to-br from-slate-800 to-slate-200'> Food Paradise</span>
