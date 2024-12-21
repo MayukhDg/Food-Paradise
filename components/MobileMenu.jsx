@@ -34,7 +34,9 @@ const MobileMenu = () => {
           
           <li className='font-light text-lg'  key={idx}>
             <Link href={link.href} >
-            { link.label }
+           <SheetClose>
+           { link.label }
+            </SheetClose> 
             </Link>       
             </li> 
            
