@@ -1,5 +1,7 @@
+"use client"
+
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import {
   Sheet,
@@ -13,8 +15,12 @@ import {
 import { Button } from './ui/button'
 import { navLinks } from '@/constants/navlinks'
 import Link from 'next/link'
+import { GlobalContext } from '@/Context/GlobalContext'
 
 const MobileMenu = () => {
+  const { cartItems } = useContext(GlobalContext)
+    
+  
   return (
     <Sheet>
      <SheetTrigger className='md:hidden block'>
@@ -30,17 +36,32 @@ const MobileMenu = () => {
      <SheetTitle>Menu</SheetTitle> 
       <SheetClose/> 
       <ul className='flex flex-col gap-4 items-center' >
-        {   navLinks.map((link, idx)=>(
-          
-          <li className='font-light text-lg hover:font-bold'  key={idx}>
-            <Link href={link.href} >
-           <SheetClose>
-           { link.label }
-            </SheetClose> 
-            </Link>       
-            </li> 
-           
-        ))}
+        { navLinks.map((item)=>{
+          if(item.label==="Cart"){
+            return (
+              <Link href={item.href}  key={item.label}>
+               <li className='hover:font-bold font-light' >
+                <SheetClose>
+                { `Cart (${cartItems.length}) `} 
+                </SheetClose>
+                
+                
+                </li>
+              </Link>
+            )
+          } else{
+            return(
+              <Link href={item.href}  key={item.label}>
+               <li className='hover:font-bold font-light' >
+                <SheetClose>
+                {item.label}
+                </SheetClose>
+                
+                </li>
+              </Link>
+            )
+          }
+        }) }
         </ul> 
      </SheetContent>
     </Sheet>
