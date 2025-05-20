@@ -1,63 +1,34 @@
 "use client"
 
 
+import { useCartStore } from '@/store/cartstore';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 
  
 const CartCard = ({id, name, quantity, price, cartItems, setCartitems, cartValue, setCartValue}) => {
   
-  const addtoCart = (id, price)=>{
-     toast.success("Added to Cart")
-     
-     const newCartItems = cartItems.map((item)=>{
-        if(item.id===id){
-           return {
-            ...item,
-            quantity:item.quantity+1
-           }
-        } else{
-          return item;
-        }
-     })
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const addToCart = useCartStore((state) => state.addToCart);
 
-     setCartitems(newCartItems);
-     setCartValue((prev)=>{
-          return prev + price
-     })
-  }
-  
-  
-  
-  const removeFromCart = (id, price) => {
-    toast.error("Item removed from cart");
-
-    setCartitems((prevCartItems) => {
-      const existingItem = prevCartItems.find((item) => item.id === id);
-  
-      if (!existingItem) {
-        // If item doesn't exist, return the cart unchanged
-        toast.error("Item not found in cart");
-        return prevCartItems;
-      }
-  
-      if (existingItem.quantity === 1) {
-        // Remove item completely if quantity is 1
-        return prevCartItems.filter((item) => item.id !== id);
-      } else {
-        // Decrease the quantity of the item
-        return prevCartItems.map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
-      }
-    });
-    
-    setCartValue((prev)=>{
-      return prev-price
+  const handleAddToCart = (id, name, price) => {
+    const item = { id, name, price };
+    toast.success("Item added to cart", {
+      position:"bottom-center",
+      duration: 1000,
     })
-  }; 
+    addToCart(item);
+  };
+  
+  
+  const handleRemove = (id, price) => {
+    removeFromCart(id, price);
+    toast.error("Item removed from cart", {
+      position:"bottom-center",
+      duration: 1000,
+    });
+  };
+  
   return (
     <div  className='flex mt-5 flex-1 min-h-[100px] justify-between items-center bg-teal-300 rounded-md px-5' >
       <div className='flex flex-col gap-4' >
@@ -70,7 +41,7 @@ const CartCard = ({id, name, quantity, price, cartItems, setCartitems, cartValue
         height={10}
         width={15}
         alt="add"
-        onClick={()=>addtoCart(id, price)}
+        onClick={()=>handleAddToCart(id, name, price)}
       />
       <p>{quantity}</p>
       <Image
@@ -78,7 +49,7 @@ const CartCard = ({id, name, quantity, price, cartItems, setCartitems, cartValue
         height={10}
         width={15}
         alt="add"
-        onClick={()=>removeFromCart(id, price)}
+        onClick={()=>handleRemove(id, price)}
       />
       </div>
       </div>

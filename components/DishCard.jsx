@@ -16,11 +16,14 @@ import { useCartStore } from '@/store/cartstore'
 const DishCard = ({id, description, price, name}) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
-  const handleAddToCart = (id, name, description, price) => {
+  const handleAddToCart = (id, name, price) => {
+    const item = { id, name, price };
+
     toast.success("Item added to cart", {
-      position:"bottom-center"
+      position:"bottom-center",
+      duration: 1000,
     })
-    addToCart({ id, name, description, price });
+    addToCart(item);
   };
 
   return (
@@ -38,7 +41,7 @@ const DishCard = ({id, description, price, name}) => {
       </CardHeader>
       <CardContent>₹{price}</CardContent>
       <CardFooter className="flex justify-between">
-        <Button onClick={() => handleAddToCart(id, name, description, price)}>Add to Cart</Button>
+        <Button onClick={() => handleAddToCart(id, name, price)}>Add to Cart</Button>
       </CardFooter>
     </Card>
   )

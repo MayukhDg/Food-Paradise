@@ -16,7 +16,7 @@ const Cart = () => {
 
   return (
     <div className='min-h-screen bg-slate-950 p-10' >
-      { cartItems.map((item)=>(
+      { cartItems.map((item) => (
         <CartCard cartItems={cartItems} setCartitems={setCartItems} cartValue={cartValue} setCartValue={setCartValue} key={item.id} id={item.id} name={item.name} quantity={item.quantity} price={item.price}  />
       )) }
       <div className='flex flex-col gap-3 mt-5' >
